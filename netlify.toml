@@ -1,11 +1,12 @@
 [build]
-command = "npm ci && npm run build"
+command = "cp prisma/schema.prisma.production prisma/schema.prisma && npm ci && npm run build"
 publish = ".next"
 ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./"
 
 [build.environment]
 NODE_VERSION = "18.19.0"
 NEXT_USE_NETLIFY_EDGE = "true"
+NODE_ENV = "production"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
