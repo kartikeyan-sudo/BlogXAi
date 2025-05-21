@@ -1,4 +1,5 @@
 // Force this API route to use Node.js runtime
+export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 import { NextRequest, NextResponse } from 'next/server';
