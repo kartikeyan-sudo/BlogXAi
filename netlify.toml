@@ -6,16 +6,11 @@ environment = [
     "ADMIN_USERNAME",
     "NEXTAUTH_SECRET",
     "NEXTAUTH_URL",
-    "NODE_ENV",
-    "NODE_VERSION",
-    "NEXT_USE_NETLIFY_EDGE"
-  ]
-ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./"
-
-[build.environment]
-NODE_VERSION = "18.19.0"
+  NODE_VERSION = "18.19.0"
 NEXT_USE_NETLIFY_EDGE = "true"
 NODE_ENV = "production"
+  ]
+ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
