@@ -1,9 +1,10 @@
 [build]
   command = "npm install && npx prisma generate && npm run build"
   publish = ".next"
+  environment = { NODE_VERSION = "18.17.0" }
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "18.17.0"
   NODE_ENV = "production"
 
 [[plugins]]
