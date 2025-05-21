@@ -19,8 +19,8 @@ const nextConfig = {
     ],
   },
 
-  // Required for Netlify deployment
-  output: 'standalone',
+  // Required for Netlify
+  trailingSlash: true,
 
   // Pass environment variables to the browser
   env: {
@@ -51,7 +51,7 @@ const nextConfig = {
   },
 
   // Enable serverless functions for Netlify
-
+  target: 'serverless',
 };
 
 module.exports = nextConfig;
