@@ -51,7 +51,7 @@ const nextConfig = {
   },
 
   // Enable serverless functions for Netlify
-  target: 'serverless',
+
 };
 
 module.exports = nextConfig;
