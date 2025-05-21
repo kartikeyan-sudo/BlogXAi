@@ -1,5 +1,5 @@
 [build]
-command = "npm install && npx prisma generate && npm run build"
+command = "npm install && npx prisma db push --accept-data-loss && npx prisma generate && npm run build"
 publish = ".next"
 
 [build.environment]
@@ -9,10 +9,12 @@ NODE_ENV = "production"
 [[plugins]]
 package = "@netlify/plugin-nextjs"
 
+# Handle all routes through Next.js
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 # Cache control for static assets
 [[headers]]
