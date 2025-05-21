@@ -1,14 +1,14 @@
 [build]
-command = "npm install && npm run build"
+command = "npm install --legacy-peer-deps && npx prisma generate && npm run build"
 publish = ".next"
 
 [build.environment]
 NODE_VERSION = "18.19.0"
 NODE_ENV = "production"
+NPM_FLAGS = "--legacy-peer-deps --prefer-offline"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
-version = "4.41.3"
 
 [[redirects]]
   from = "/*"
