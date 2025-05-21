@@ -9,14 +9,10 @@ NODE_ENV = "production"
 [[plugins]]
 package = "@netlify/plugin-nextjs"
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/nextjs-server"
-  status = 200
-
+# Rewrite all requests to the Next.js server
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/nextjs-server"
   status = 200
   force = true
 [[redirects]]
