@@ -12,7 +12,7 @@ package = "@netlify/plugin-nextjs"
 # Rewrite all requests to the Next.js server
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/nextjs-server"
   status = 200
   force = true
 
@@ -20,7 +20,6 @@ package = "@netlify/plugin-nextjs"
   from = "http://*"
   to = "https://:splat"
   status = 301
-  force = true
   force = true
 
 # Cache control for static assets
