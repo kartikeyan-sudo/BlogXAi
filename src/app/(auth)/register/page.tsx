@@ -51,8 +51,8 @@ export default function RegisterPage() {
     }
     
     try {
-      // Use the full URL instead of relative path to avoid potential routing issues
-      const apiUrl = window.location.origin + '/api/auth/register';
+      // Use relative path for API requests
+      const apiUrl = '/api/auth/register';
       console.log('Sending registration request to:', apiUrl);
       
       const response = await fetch(apiUrl, {
