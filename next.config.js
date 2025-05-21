@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable React strict mode for better development experience
+  // Enable React strict mode
   reactStrictMode: true,
 
   // Configure images
   images: {
+    unoptimized: true,
     domains: ['picsum.photos', 'images.unsplash.com'],
     remotePatterns: [
       {
@@ -18,16 +19,19 @@ const nextConfig = {
     ],
   },
 
+  // Required for Netlify deployment
+  output: 'standalone',
+
   // Pass environment variables to the browser
   env: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   },
 
-  // Enable source maps in production for better debugging
-  productionBrowserSourceMaps: true,
+  // Disable source maps in production for better performance
+  productionBrowserSourceMaps: false,
 
-  // Disable trailing slash for cleaner URLs
+  // Disable trailing slash
   trailingSlash: false,
 
   // Handle TypeScript and ESLint
@@ -45,6 +49,9 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client'],
   },
+
+  // Enable serverless functions for Netlify
+  target: 'serverless',
 };
 
 module.exports = nextConfig;
