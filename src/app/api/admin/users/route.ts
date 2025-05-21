@@ -1,11 +1,4 @@
-export const config = {
-  runtime: 'nodejs'
-};
 
-import { NextRequest, NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
-import { verifyAuth, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
 
 // ... your existing code
 import { NextRequest, NextResponse } from 'next/server';
