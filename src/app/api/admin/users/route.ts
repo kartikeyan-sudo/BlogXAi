@@ -1,53 +1,46 @@
+// Force this API route to use Node.js runtime
+export const runtime = 'nodejs';
 
-
-// ... your existing code
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { verifyAuth, isAdmin } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
-// Get all users
 export async function GET(request: NextRequest) {
   try {
     // Get token from Authorization header
     const authHeader = request.headers.get('authorization');
     let token: string | undefined;
-    
+
     if (authHeader && authHeader.startsWith('Bearer ')) {
       token = authHeader.split(' ')[1];
     } else {
       // If no Authorization header, try to get from cookies
       token = request.cookies.get('authToken')?.value;
     }
-    
+
     if (!token) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    
+
     // Verify token and check if user is admin
     const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as any;
-    
+
     if (!decoded || decoded.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Unauthorized - Admin access required' }, { status: 403 });
     }
 
     // Get query parameters for filtering
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
-    
-    // Build the query
+
+    // Build query
     const query: any = {};
     if (status && (status === 'ACTIVE' || status === 'BLOCKED')) {
       query.status = status;
     }
 
-    // For now, return mock data since the database isn't set up yet
+    // Mock data
     const mockUsers = [
       {
         id: '1',
@@ -82,10 +75,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(mockUsers);
   } catch (error) {
     console.error('Error fetching users:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }
