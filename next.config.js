@@ -3,9 +3,9 @@ const nextConfig = {
   // Enable React strict mode
   reactStrictMode: true,
 
-  // Configure images
+  // Configure images for static exports
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static exports
     domains: ['picsum.photos', 'images.unsplash.com'],
     remotePatterns: [
       {
@@ -19,9 +19,6 @@ const nextConfig = {
     ],
   },
 
-  // Required for Netlify
-  trailingSlash: true,
-
   // Pass environment variables to the browser
   env: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
@@ -32,8 +29,8 @@ const nextConfig = {
   // Disable source maps in production for better performance
   productionBrowserSourceMaps: false,
 
-  // Disable trailing slash
-  trailingSlash: false,
+  // Handle trailing slashes consistently
+  trailingSlash: true, // Set to true for better compatibility with static exports
 
   // Handle TypeScript and ESLint
   typescript: {
@@ -43,15 +40,19 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  // Configure build output directory
-  distDir: '.next',
+  // Configure build output for static exports
+  output: 'export', // Required for static site generation
+
+  // Configure base path if your site is served from a subdirectory
+  // basePath: '/your-base-path',
 
   // Configure external packages for server components
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client'],
   },
 
-  // Enable serverless functions for Netlify
+  // Note: API routes won't work with static exports
+  // For API routes, consider using Netlify Functions or Vercel Serverless Functions
 };
 
 module.exports = nextConfig;
