@@ -41,7 +41,7 @@ const nextConfig = {
   },
 
   // Configure build output for static exports
-  output: 'export', // Required for static site generation
+ // output: 'export', // Required for static site generation
 
   // Configure base path if your site is served from a subdirectory
   // basePath: '/your-base-path',
